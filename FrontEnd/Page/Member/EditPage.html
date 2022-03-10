@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>編輯頁面</title>
+
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="import" href="../ResultModal.html" id="resultModal">
+    <script src="../../Js/RootPath.js"></script>
+    <script src="../../Js/ResultModal.js"></script>
+    <script src="../../Js/Ajax.js"></script>
+    <script defer="defer" src="../../Js/Member/Edit.js"></script>
+    <script src="../../Js/Member/Authorization.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <br>
+        <!-- <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com</a></p> -->
+        <!-- <hr> -->
+
+        <div class="card bg-light align-items-center ">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Edit Profile</h4>
+                <p class="text-center">修改資料</p>
+
+                <form style="width:300px">
+
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <input id="name" class="form-control" placeholder="Full name" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-home" aria-hidden="true"></i> </span>
+                        </div>
+                        <input id="address" class="form-control" placeholder="address" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                        </div>
+                        <input id="phone" class="form-control" placeholder="Phone number" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input id="password" class="form-control" placeholder="Create password" type="password">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input id="pswRepeat" class="form-control" placeholder="Repeat password" type="password">
+                    </div>
+
+                    <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-block" onclick="Edit()"> Modify Account
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-block"
+                            onclick="location.href='ProfilePage.html'"> Cancel
+                        </button>
+                    </div> <!-- form-group// -->
+                </form>
+            </article>
+        </div> <!-- card.// -->
+
+    </div>
+    <!--container end.//-->
+    <script>
+        
+
+        function Set_Profile() {
+            if (result.status == "fail") {
+                $("#msgToggleBtn").click();
+                setTimeout(() => {
+                    window.location.href = rootPath + 'frontend/page/member/LoginPage.html';
+                }, 1500);
+            }
+            $('#name').val(result.memberData.name);
+            $('#address').val(result.memberData.address);
+            $('#phone').val(result.memberData.phone);
+            $('#password').val(result.memberData.password);
+            $('#pswRepeat').val(result.memberData.password);
+        }
+
+    </script>
+</body>
+
+</html>

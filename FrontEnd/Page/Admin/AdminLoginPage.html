@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Css/Admin/AdminRegister.css">
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+    <script src="../../Js/RootPath.js"></script>
+    <script src="../../Js/Admin/AdminLogin.js"></script>
+    <title>管理員登入頁面</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">登入</div>
+        <form class="admin-register-form">
+            <div class="input-item">
+                <div class="input-text">帳號*</div>
+                <input type="text" name="account" id="account">
+            </div>
+            <div class="input-item">
+                <div class="input-text">密碼*</div>
+                <input type="password" name="password" id="password">
+            </div>
+            <p class="remark-msg">*為必填事項</p>
+            <button type="button" onclick="AdminLogin()">送出</button>
+            <div class="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+        console.log($(".input-text"));
+        for (let i = 0; i < $("input").length; i++) {
+            $("input").eq(i).focus(function () {
+                $(".input-text").eq(i).css("top", "0");
+                $(".input-text").eq(i).css("color", "#000");
+                //if ($("input").eq(i).val() != '') $(".input-text").eq(i).css("top", "0");
+                //else $(".input-text").eq(i).css("top", "30px");
+            });
+            $("input").eq(i).blur(function () {
+                //$(".input-text").eq(i).css("top", "0");
+                if ($("input").eq(i).val() != '') {
+                    $(".input-text").eq(i).css("top", "0");
+                    $(".input-text").eq(i).css("color", "#000");
+                } else {
+                    $(".input-text").eq(i).css("top", "30px");
+                    $(".input-text").eq(i).css("color", "#999");
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

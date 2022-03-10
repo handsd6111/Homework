@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員修改頁面</title>
+
+
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!------ Include the above in your HEAD tag ---------->
+
+    <script src="../../Js/RootPath.js"></script>
+    <link rel="import" href="../ResultModal.html" id="resultModal">
+    <script src="../../Js/ResultModal.js"></script>
+    <script src="../../Js/Ajax.js"></script>
+    <script src="../../Js/Admin/Authorization.js"></script>
+
+    <script defer="defer" src="../../Js/Admin/AdminEditMember.js"></script>
+
+    <style>
+        html {
+            background: #222222;
+        }
+
+        body {
+            background: #222222;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <!-- <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com</a></p> -->
+        <!-- <hr> -->
+
+        <div class="card bg-light align-items-center ">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Edit Member</h4>
+                <p class="text-center">修改成員的資料(管理員)</p>
+
+                <form style="width:300px">
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input id="account" class="form-control" placeholder="Account" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <input id="name" class="form-control" placeholder="Full name" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-home" aria-hidden="true"></i> </span>
+                        </div>
+                        <input id="address" class="form-control" placeholder="address" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                        </div>
+                        <input id="phone" class="form-control" placeholder="Phone number" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-gavel"></i> </span>
+                        </div>
+                        <input id="authority" class="form-control" placeholder="authority" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input id="password" class="form-control" placeholder="Create password" type="password">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input id="pswRepeat" class="form-control" placeholder="Repeat password" type="password">
+                    </div>
+
+                    <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-block" onclick="Admin_Edit_Member(location.search.split('key=')[1])"> Modify
+                            Account </button>
+                        <button type="button" class="btn btn-secondary btn-block" onclick="location.href=rootPath + '/FrontEnd/Page/Admin/AdminIndexPage.html'">
+                            Cancel </button>
+                    </div> <!-- form-group// -->
+                </form>
+            </article>
+        </div> <!-- card.// -->
+
+    </div>
+    <!--container end.//-->
+
+    <script>
+        function Set_Profile() {
+            if (result.status == "fail") {
+                $("#msgToggleBtn").click();
+                setTimeout(() => {
+                    window.location.href = rootPath + '/frontend/page/member/LoginPage.html';
+                }, 1500);
+            }
+            Ajax(rootPath + "/Action/Admin/AdminGetMember.php", 'POST', { member_key: location.search.split("key=")[1] }, 'json', Set_Member_Data, 0, null, false);
+        }
+
+        function Set_Member_Data() {
+            $('#account').val(result.memberData.account);
+            $('#name').val(result.memberData.name);
+            $('#phone').val(result.memberData.phone);
+            $('#address').val(result.memberData.address);
+            $('#authority').val(result.memberData.authority);
+            $('#password').val(result.memberData.password);
+            $('#pswRepeat').val(result.memberData.password);
+        }
+
+    </script>
+
+</body>
+
+</html>

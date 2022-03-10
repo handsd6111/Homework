@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入頁面</title>
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="import" href="../ResultModal.html" id="resultModal">
+    <script src="../../Js/RootPath.js"></script>
+    <script src="../../Js/ResultModal.js"></script>
+    <script src="../../Js/Ajax.js"></script>
+    <script src="../../Js/Member/Login.js" defer="defer"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/">
+                Bootstrap-ecommerce.com</a></p>
+        <hr>
+
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Login Account</h4>
+                <!-- <p class="text-center"></p> -->
+
+                <form>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input id="account" class="form-control" placeholder="Account" type="text">
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input id="password" class="form-control" placeholder="Password" type="password">
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="button" onclick="Login()" class="btn btn-primary btn-block"> Sign In </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Not have an account? <a href="RegisterPage.html">Register</a> </p>
+                </form>
+            </article>
+        </div> <!-- card.// -->
+
+    </div>
+    <!--container end.//-->
+
+    <br><br>
+    <article class="bg-secondary mb-3">
+        <div class="card-body text-center">
+            <h3 class="text-white mt-3">Bootstrap 4 UI KIT</h3>
+            <p class="h5 text-white">Components and templates <br> for Ecommerce, marketplace, booking websites
+                and product landing pages</p> <br>
+            <p><a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/">
+                    Bootstrap-ecommerce.com
+                    <i class="fa fa-window-restore "></i></a></p>
+        </div>
+        <br><br>
+    </article>
+</body>
+
+</html>

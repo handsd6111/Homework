@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Css/Member/ProfilePage.css">
+    <link rel="import" href="../ResultModal.html" id="resultModal">
+    <script src="../../Js/RootPath.js"></script>
+    <script src="../../Js/ResultModal.js"></script>
+    <script src="../../Js/Ajax.js"></script>
+    <script src="../../Js/Member/Authorization.js"></script>
+    <script src="../../Js/Member/AvatarUpload.js" defer="defer"></script>
+    <title>個人頁面</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="profile-box">
+            <img class="back-image" width="500" width="500"
+                src="https://fakeimg.pl/1000x500/282828/eae0d0/?retina=1&text=backImg"></img>
+            <label for="avatar_input"><img width="500" width="500" class="avatar"
+                    src="https://fakeimg.pl/300x300/ffffff/282828/?retina=1&text=avater"></img></label>
+            <h3 class="username">
+            </h3>
+            <p class="introduction">I am a man.</p>
+            <button class="btn-lg btn-edit-profile" onclick="window.location.href='EditPage.html'">Edit Profile</button>
+            <div class="item-box">
+                <div class="item-address">
+                    <h5 class="item-title">Address</h5>
+                    <p class="item-value">
+                    </p>
+                </div>
+                <div class="item-phone">
+                    <h5 class="item-title">Phone</h5>
+                    <p class="item-value">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="logout-zone" onclick="Logout()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+            class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+            <path
+                d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-door-open-fill"
+            viewBox="0 0 16 16">
+            <path
+                d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+        </svg>
+    </div>
+
+    <script>
+        
+
+        function Set_Profile() {
+            if (result.status == "fail") {
+                $("#msgToggleBtn").click();
+                setTimeout(() => {
+                    window.location.href = rootPath + '/frontend/page/member/LoginPage.html';
+                }, 1500);
+            }
+            $('.username').text(result.memberData.name);
+            $('.item-address .item-value').text(result.memberData.address);
+            $('.item-phone .item-value').text(result.memberData.phone);
+        }
+
+        function Logout() {
+            localStorage.removeItem('JWT');
+            msgBox.html("<strong style='color:green;'>恭喜! </strong>登出成功");
+            $("#msgToggleBtn").click();
+            setTimeout(() => {  
+                window.location.href = rootPath + '/frontend/page/member/LoginPage.html';
+            }, 1500);
+        }
+    </script>
+    <input style="display:none;" type="file" id="avatar_input" accept="image/*">
+</body>
+
+</html>

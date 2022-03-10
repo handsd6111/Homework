@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    font-family: 微軟正黑體;
+}
+
+.full-introduction {
+    padding: 5px 10px;
+    background: beige;
+    border: 1px solid black;
+    display: none;
+    min-width: 20px;
+    max-width: 300px;
+    position: absolute;
+}
+
+.container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    /* background-color: blanchedalmond; */
+}
+
+
+/* member-list */
+
+.member-list {
+    width: 20vw;
+    min-height: calc(100vh - 20px);
+    /* background-color: beige; */
+    color: #888;
+    padding: 10px 0;
+    border-right: 1px solid #bbb;
+}
+
+.member-list .title {
+    color: black;
+    text-align: center;
+    font-size: 26px;
+    padding: 10px 0 20px 0;
+    font-weight: bold;
+}
+
+.member-list .self {
+    /* background: #eee; */
+    /* border-top: 1px solid #888; */
+    border-bottom: 1px solid #888;
+}
+
+.member-list .member-info-item {
+    padding: 10px 20px;
+    display: flex;
+}
+
+.member-list .self .text .name {
+    /* color: #ffcf4a; */
+    /* color: #415163; */
+    /* color: #557919; */
+    color: black;
+    font-weight: bold;
+}
+
+.member-list .member-info-item .avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.member-list .member-info-item .text {
+    padding: 5px 20px;
+}
+
+.member-list .member-info-item .text .name {
+    font-size: 22px;
+}
+
+.member-list .member-info-item .text .introduction {
+    padding: 5px 0;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 10vw;
+}
+
+/* chat-content */
+
+.chat-content {
+    width: 80vw;
+}
+
+.chat-content .message-zone {
+    height: calc(94vh - 30px);
+    padding: 15px;
+}
+
+.chat-content .message-zone .system-message {
+    margin: auto;
+    text-align: center;
+    color:#888;
+    padding: 10px 0;
+}
+
+.chat-content .message-zone .message-item {
+    display: flex;
+    font-size: 16px;
+}
+
+.chat-content .message-zone .message-item .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.chat-content .message-zone .message-item .text {
+    padding: 5px 10px;
+    min-width: 10px;
+    /* width: 10px; */
+    max-width: 40%;
+}
+
+.chat-content .message-zone .message-item .text .info {
+    /* overflow: visible; */
+    /* width: 10px; */
+    white-space: pre;
+}
+
+.chat-content .message-zone .message-item .text .info .name {
+    padding: 0 5px 2px 0;
+    font-size: 16px;
+}
+
+
+.chat-content .message-zone .message-item .text .info .time {
+    font-size: 13px;
+    line-height: 23px;
+    color: #888;
+}
+
+
+.chat-content .message-zone .message-item .text .message {
+    min-width: 10px;
+    max-width: 100%;
+    word-break: break-all;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #e4e6eb;
+    /* background: #111; */
+}
+
+.chat-content .message-zone .message-item .text .info {
+    display: flex;
+}
+
+.chat-content .message-zone .self {
+    /* justify-content: flex-end; */
+    flex-direction: row-reverse;
+}
+
+.chat-content .message-zone .self .text {
+    text-align: right;
+}
+
+.chat-content .message-zone .self .text .info {
+    /* margin: auto; */
+    justify-content: flex-end;
+    /* flex-direction: row-reverse; */
+    
+}
+
+.chat-content .message-zone .self .text .message {
+    /* text-align: right; */
+    /* position: relative; */
+    background-color: #0084ff;
+    color: #fff;
+}
+
+
+
+
+.chat-content .input-zone {
+    display: flex;
+    height: calc(6vh - 20px);
+    padding: 10px;
+}
+
+.chat-content .input-zone input {
+    margin: auto;
+    font-size: 15px;
+    height: 20px;
+    /* line-height: 36px; */
+    border-radius: 30px;
+    border: none;
+    background: #eee;
+    padding: 8px 15px;
+    width: 100%;
+    outline: none;
+}
+
+.chat-content .input-zone .send-btn {
+    /* margin: auto; */
+    /* height: 24px; */
+    /* line-height: 36px; */
+    padding: 6px 0px 6px 10px;
+}

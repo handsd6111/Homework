@@ -1,0 +1,12 @@
+[{
+    "host" : "localhost",
+    "user" : "",
+    "password" : "",
+    "port" : 3306,
+    "db" : [
+        {
+            "id" : 0,
+            "name" : "HW1"
+        }
+    ]
+}]

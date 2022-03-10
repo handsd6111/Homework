@@ -1,0 +1,95 @@
+.profile-box {
+    position: relative;
+    text-align: center;
+    width: 600px;
+    margin: 50px auto;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.btn-edit-profile {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+
+    background-color: #7460ee;
+    color: white;
+    border-radius: 100px;
+    border: none;
+    font-size: 16px;
+    width: 150px;
+    height: 45px;
+    margin: 0;
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.btn-edit-profile:focus {
+    outline: none;
+    background-color: rgba(34, 0, 255, 0.8);
+}
+
+.btn-edit-profile:hover {
+    background-color: rgba(116, 96, 238, 0.7);
+}
+
+.back-image {
+    width: 600px;
+    height: 300px;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 80px;
+}
+
+.back-image,
+.avatar,
+.username,
+.introduction {
+    display: block;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    border: 1px solid black;
+    position: absolute;
+    top: 240px;
+    left: 240px;
+}
+
+.item-box {
+    display: flex;
+}
+
+.item-address {
+    width: 50%;
+}
+
+.item-address .item-value {
+    padding: 0 30px 0;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+.item-phone {
+    width: 50%;
+}
+
+.logout-zone {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.bi-door-open-fill {
+    display: none;
+}
+
+.bi-door-closed-fill:hover {
+    display: none;
+}
+
+.bi-door-closed-fill:hover~.bi-door-open-fill {
+    display: block;
+}

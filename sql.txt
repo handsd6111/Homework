@@ -1,0 +1,19 @@
+Create Database If Not Exists HW1;
+CREATE TABLE If Not Exists member (
+    member_key INT(8) PRIMARY KEY COMMENT '成員編號' AUTO_INCREMENT,
+    account VARCHAR(25) COMMENT '帳號' NOT NULL,
+    password VARCHAR(30) COMMENT '密碼' NOT NULL,
+    phone VARCHAR(20) COMMENT '電話' NOT NULL,
+    name VARCHAR(20) COMMENT '姓名' NOT NULL,
+    address VARCHAR(35) COMMENT '住址' NOT NULL
+);
+ALTER TABLE member ADD authority int(1) COMMENT '權限' NOT NULL DEFAULT 2;
+ALTER TABLE member ADD avatar VARCHAR(30) COMMENT '頭像';
+ALTER TABLE member ADD backImg VARCHAR(30) COMMENT '背景圖片';
+
+Create Table If Not Exists chat_record(
+    chat_record_key Int(12) Primary Key Comment '聊天紀錄表編號' Auto_Increment,
+    create_time Datetime Comment '訊息傳送時的時間' Not Null,
+    message Varchar(300) Comment '聊天訊息' Not Null,
+    member_key Int(8) Comment '成員編號' Not Null
+);

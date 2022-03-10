@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="../../Js/RootPath.js"></script>
+    <link rel="import" href="../ResultModal.html" id="resultModal">
+    <script src="../../Js/ResultModal.js"></script>
+    <script src="../../Js/Ajax.js"></script>
+    <script src="../../Js/Admin/Authorization.js"></script>
+    <script src="../../Js/Admin/AdminIndex.js"></script>
+    <script src="../../Js/Admin/AdminDeleteMember.js" defer="defer"></script>
+    <title>管理員總覽頁面</title>
+
+    <style>
+        body {
+            /* background: #f0f7f7; */
+            color: white;
+            background: #222222;
+        }
+
+        .modal {
+            color: black;
+        }
+
+        .display-1 {
+            text-align: center;
+            margin: 30px 0 40px 0;
+        }
+
+        .member-count-select {
+            width: 10%;
+            margin: 15px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="display-1">使用者資訊總覽</h1>
+        <!-- <select class="custom-select member-count-select float-right">
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select> -->
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">key</th>
+                    <th scope="col">帳號</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">電話</th>
+                    <th scope="col">地址</th>
+                    <th scope="col">權限</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="member-table">
+            </tbody>
+            <template id="member-table-template">
+                <tr id="member-data">
+                    <th scope="row"></th>
+                    <td id="member_key"></td>
+                    <td id="account"></td>
+                    <td id="name"></td>
+                    <td id="phone"></td>
+                    <td id="address"></td>
+                    <td id="authority"></td>
+                    <td id="button-zone">
+                        <button type='button' class='btn btn-secondary btn-sm'>編輯</button>
+                        <button type='button' data-toggle='modal' data-target='#DeleteCheckCenter'
+                            class='btn btn-danger btn-sm'>刪除</button>
+                    </td>
+                </tr>
+            </template>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            </ul>
+        </nav>
+
+    </div>
+
+
+
+    <script>
+        var page = 1;
+        // $(".member-count-select")[0].addEventListener('change', (event) => {
+        //     AdminIndex(event.target.value, 0);
+        // });
+        function Set_Profile() {
+            if (result.status == "fail") {
+                $("#msgToggleBtn").click();
+                setTimeout(() => {
+                    window.location.href = rootPath + '/frontend/page/member/LoginPage.html';
+                }, 1500);
+            }
+            AdminIndex();
+        }
+        function Set_Member_List() {
+
+            $("#member-table")[0].innerText = "";
+            $(".pagination").html("");
+            var template = $("#member-table-template")[0];
+            for (var i = 1; i < Math.ceil(result.memberCount / 10) + 1; i++) {
+                $(".pagination").append("<li class='page-item " + (i == page ? "active" : "") + " page-" + i + "'><a class='page-link' href='#'>" + i + "</a></li>");
+                $(".pagination .page-link")[i - 1].addEventListener('click', (event) => {
+                    page = event.target.text;
+                    AdminIndex(10, (event.target.text - 1) * 10);
+                });
+            }
+            //console.log(template);
+            for (var i = 0; i < result.memberList.length; i++) {
+                template.content.querySelectorAll("th")[0].textContent = i;
+                template.content.querySelectorAll("td#member_key")[0].textContent = result.memberList[i].member_key;
+                template.content.querySelectorAll("td#name")[0].textContent = result.memberList[i].name;
+                template.content.querySelectorAll("td#account")[0].textContent = result.memberList[i].account;
+                template.content.querySelectorAll("td#address")[0].textContent = result.memberList[i].address;
+                template.content.querySelectorAll("td#phone")[0].textContent = result.memberList[i].phone;
+                template.content.querySelectorAll("td#authority")[0].textContent = result.memberList[i].authority == 1 ? "管理員" : "普通會員";
+                template.content.querySelectorAll("button.btn")[0].id = ("edit-btn-" + result.memberList[i].member_key);
+                template.content.querySelectorAll("button.btn")[1].id = ("delete-btn-" + result.memberList[i].member_key);
+
+                var clone = document.importNode(template.content, true)
+                $("#member-table")[0].appendChild(clone);
+
+                $("#edit-btn-" + result.memberList[i].member_key)[0].addEventListener('click', (event) => {
+                    location.href = rootPath + '/FrontEnd/Page/Admin/AdminEditMemberPage.html?key=' + event.target.id.replace("edit-btn-", "");
+                    //console.log(event.target.id.replace("edit-btn-", ""));
+                });
+                $("#delete-btn-" + result.memberList[i].member_key)[0].addEventListener('click', (event) => {
+                    $("#delete-key").text(event.target.id.replace("delete-btn-", ""));
+                });
+            }
+        }
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="DeleteCheckCenter" tabindex="-1" role="dialog" aria-labelledby="DeleteCheckCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:red" id="DeleteCheckLongTitle">警告!!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="delete-key" style="display:none"></div>
+                <div class="modal-body">
+                    是否確定要刪除此使用者?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="Delete_Member()" class="btn btn-danger">確定</button>
+                    <button type="button" class="btn btn-secondary" id="close-modal-btn"
+                        data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
